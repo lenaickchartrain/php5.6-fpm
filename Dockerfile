@@ -1,5 +1,7 @@
 FROM php:5.6-fpm
 
+LABEL maintainer="lcdev76"
+
 ENV http_proxy=${HTTP_PROXY}
 ENV https_proxy=${HTTPS_PROXY}
 
@@ -9,8 +11,6 @@ RUN apt-get update \
 
 RUN docker-php-ext-install pdo_mysql
 RUN docker-php-ext-enable opcache
-RUN git clone --single-branch -b xdebug_2_5 https://github.com/xdebug/xdebug.git \
-	&& cd xdebug && ./rebuild.sh && docker-php-ext-enable xdebug
 	
 ADD ./conf /usr/local/etc/php/conf.d
 
